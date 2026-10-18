@@ -1,0 +1,890 @@
+{#- ============================================================
+     Nexra Subscription Template — for Marzban
+     تنظیمات اصلی (فقط همین چند خط را ویرایش کنید)
+   ============================================================ -#}
+{%- set brand_name = "Nexra" -%}
+{%- set brand_tagline = "اشتراک اختصاصی شما" -%}
+{%- set footer_text = "با سپاس از اعتماد شما" -%}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#07080f">
+  <title>{{ user.username }} · {{ brand_name }}</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%237c5cff'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M20 44V20h5l14 16V20h5v24h-5L25 28v16z' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <script>
+    /* اعمال تم قبل از رندر برای جلوگیری از چشمک زدن */
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('nexra-theme'); } catch (e) {}
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <style>
+    :root {
+      --bg: #07080f;
+      --bg-2: #0c0e1a;
+      --surface: rgba(255, 255, 255, 0.035);
+      --surface-2: rgba(255, 255, 255, 0.06);
+      --surface-3: rgba(255, 255, 255, 0.09);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-strong: rgba(255, 255, 255, 0.14);
+      --text: #eef0ff;
+      --muted: #9aa0bd;
+      --faint: #6b7192;
+      --brand-1: #7c5cff;
+      --brand-2: #22d3ee;
+      --brand-grad: linear-gradient(135deg, var(--brand-1), var(--brand-2));
+      --success: #22c55e;
+      --warn: #f59e0b;
+      --danger: #ef4444;
+      --info: #38bdf8;
+      --ring-track: rgba(255, 255, 255, 0.07);
+      --shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+      --glow-1: rgba(124, 92, 255, 0.28);
+      --glow-2: rgba(34, 211, 238, 0.18);
+      --radius: 20px;
+      --radius-sm: 14px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        --bg: #f3f4fb;
+        --bg-2: #ffffff;
+        --surface: rgba(255, 255, 255, 0.75);
+        --surface-2: rgba(18, 21, 43, 0.04);
+        --surface-3: rgba(18, 21, 43, 0.07);
+        --border: rgba(18, 21, 43, 0.08);
+        --border-strong: rgba(18, 21, 43, 0.14);
+        --text: #12152b;
+        --muted: #5d6385;
+        --faint: #8a8fab;
+        --ring-track: rgba(18, 21, 43, 0.07);
+        --shadow: 0 20px 50px -24px rgba(40, 44, 90, 0.25);
+        --glow-1: rgba(124, 92, 255, 0.16);
+        --glow-2: rgba(34, 211, 238, 0.14);
+      }
+    }
+    :root[data-theme="light"] {
+      --bg: #f3f4fb;
+      --bg-2: #ffffff;
+      --surface: rgba(255, 255, 255, 0.75);
+      --surface-2: rgba(18, 21, 43, 0.04);
+      --surface-3: rgba(18, 21, 43, 0.07);
+      --border: rgba(18, 21, 43, 0.08);
+      --border-strong: rgba(18, 21, 43, 0.14);
+      --text: #12152b;
+      --muted: #5d6385;
+      --faint: #8a8fab;
+      --ring-track: rgba(18, 21, 43, 0.07);
+      --shadow: 0 20px 50px -24px rgba(40, 44, 90, 0.25);
+      --glow-1: rgba(124, 92, 255, 0.16);
+      --glow-2: rgba(34, 211, 238, 0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: Vazirmatn, Tahoma, system-ui, -apple-system, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color .3s ease, color .3s ease;
+    }
+    button { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; }
+    a { color: inherit; text-decoration: none; }
+    svg { flex-shrink: 0; }
+    .ltr { direction: ltr; unicode-bidi: isolate; }
+
+    /* پس‌زمینه */
+    .bg-fx { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+    .bg-fx::before, .bg-fx::after {
+      content: ""; position: absolute; width: 70vmax; height: 70vmax; border-radius: 50%;
+      filter: blur(80px); opacity: 1;
+    }
+    .bg-fx::before { top: -35vmax; right: -20vmax; background: radial-gradient(circle, var(--glow-1), transparent 65%); animation: drift 18s ease-in-out infinite alternate; }
+    .bg-fx::after { bottom: -40vmax; left: -25vmax; background: radial-gradient(circle, var(--glow-2), transparent 65%); animation: drift 22s ease-in-out infinite alternate-reverse; }
+    .bg-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 0%, transparent 70%);
+      opacity: .55;
+    }
+    @keyframes drift { to { transform: translate(6vmax, 4vmax) scale(1.08); } }
+
+    .wrap { max-width: 980px; margin: 0 auto; padding: 18px 16px 40px; }
+
+    /* هدر */
+    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0 22px; }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand-mark {
+      width: 42px; height: 42px; border-radius: 13px; background: var(--brand-grad);
+      display: grid; place-items: center; color: #fff;
+      box-shadow: 0 10px 30px -8px var(--brand-1);
+    }
+    .brand-name { font-weight: 800; font-size: 1.25rem; letter-spacing: .3px; line-height: 1.2; }
+    .brand-name span { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .brand-sub { font-size: .78rem; color: var(--muted); }
+    .icon-btn {
+      width: 42px; height: 42px; border-radius: 13px; display: grid; place-items: center;
+      background: var(--surface); border: 1px solid var(--border);
+      backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease;
+    }
+    .icon-btn:hover { background: var(--surface-2); border-color: var(--border-strong); }
+    .icon-btn:active { transform: scale(.94); }
+    .theme-sun { display: none; }
+    :root[data-theme="light"] .theme-sun { display: block; }
+    :root[data-theme="light"] .theme-moon { display: none; }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme]) .theme-sun { display: block; }
+      :root:not([data-theme]) .theme-moon { display: none; }
+    }
+
+    /* کارت پایه */
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-bottom: 16px;
+      animation: rise .5s cubic-bezier(.2, .8, .2, 1) both;
+    }
+    .card:nth-of-type(2) { animation-delay: .05s; }
+    .card:nth-of-type(3) { animation-delay: .1s; }
+    .card:nth-of-type(4) { animation-delay: .15s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+    .card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .card-title { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.02rem; }
+    .card-title .ico {
+      width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(124, 92, 255, .18), rgba(34, 211, 238, .14));
+      color: var(--brand-1); border: 1px solid rgba(124, 92, 255, .2);
+    }
+    :root[data-theme="light"] .card-title .ico { color: #6246ea; }
+    .card-desc { font-size: .82rem; color: var(--muted); }
+
+    /* کارت اصلی */
+    .hero { display: grid; grid-template-columns: 1fr auto; gap: 22px; align-items: center; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 2px; background: var(--brand-grad); opacity: .8;
+    }
+    .user-row { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; min-width: 0; }
+    .avatar {
+      width: 56px; height: 56px; border-radius: 18px; flex-shrink: 0;
+      background: var(--brand-grad); color: #fff; font-weight: 800; font-size: 1.35rem;
+      display: grid; place-items: center; text-transform: uppercase;
+      box-shadow: 0 12px 30px -10px var(--brand-1);
+    }
+    .user-name { font-weight: 800; font-size: 1.3rem; line-height: 1.3; word-break: break-all; }
+    .status {
+      display: inline-flex; align-items: center; gap: 7px; margin-top: 4px;
+      font-size: .78rem; font-weight: 600; padding: 3px 11px 3px 12px; border-radius: 999px;
+      color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent);
+      border: 1px solid color-mix(in srgb, var(--c) 28%, transparent);
+    }
+    .status .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 0 var(--c); }
+    .status[data-s="active"] .dot { animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 60%, transparent); }
+      70% { box-shadow: 0 0 0 7px transparent; }
+      100% { box-shadow: 0 0 0 0 transparent; }
+    }
+
+    .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat {
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      padding: 12px 14px; min-width: 0;
+    }
+    .stat-label { display: flex; align-items: center; gap: 6px; font-size: .76rem; color: var(--muted); margin-bottom: 4px; }
+    .stat-label svg { opacity: .8; }
+    .stat-value { font-weight: 700; font-size: 1.02rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .stat-value small { font-weight: 500; font-size: .74rem; color: var(--muted); margin-inline-start: 3px; }
+
+    .ring-box { position: relative; width: 190px; height: 190px; }
+    .ring-box svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring-track { stroke: var(--ring-track); }
+    .ring-bar { transition: stroke-dashoffset 1.2s cubic-bezier(.2, .8, .2, 1); }
+    .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    .ring-pct { font-weight: 800; font-size: 2rem; line-height: 1.1; }
+    .ring-cap { font-size: .76rem; color: var(--muted); margin-top: 2px; }
+    .ring-sub { font-size: .8rem; font-weight: 600; margin-top: 6px; padding: 2px 10px; border-radius: 999px; background: var(--surface-2); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .chip {
+      display: inline-flex; align-items: center; gap: 6px; font-size: .76rem; color: var(--muted);
+      padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border);
+    }
+
+    .alert {
+      display: none; align-items: center; gap: 10px; margin-top: 16px; grid-column: 1 / -1;
+      padding: 12px 14px; border-radius: var(--radius-sm); font-size: .86rem; font-weight: 500;
+      color: var(--c); background: color-mix(in srgb, var(--c) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--c) 25%, transparent);
+    }
+    .alert.show { display: flex; }
+
+    /* لینک اشتراک */
+    .sub-box {
+      display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 14px;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+    }
+    .sub-url { flex: 1; min-width: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .8rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; padding-inline-start: 6px; }
+    .actions { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 10px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 12px 16px; border-radius: var(--radius-sm); font-weight: 600; font-size: .9rem;
+      background: var(--surface-2); border: 1px solid var(--border);
+      transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { background: var(--surface-3); border-color: var(--border-strong); }
+    .btn:active { transform: scale(.97); }
+    .btn-primary {
+      background: var(--brand-grad); color: #fff; border-color: transparent;
+      box-shadow: 0 12px 28px -12px var(--brand-1);
+    }
+    .btn-primary:hover { background: var(--brand-grad); filter: brightness(1.08); box-shadow: 0 14px 32px -10px var(--brand-1); border-color: transparent; }
+    .btn-sm { padding: 8px 12px; font-size: .8rem; border-radius: 11px; }
+    .btn-icon { padding: 0; width: 38px; height: 38px; border-radius: 11px; }
+
+    /* راهنمای Happ */
+    .tabs {
+      display: flex; gap: 6px; padding: 5px; margin-bottom: 18px; overflow-x: auto; scrollbar-width: none;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: 16px;
+    }
+    .tabs::-webkit-scrollbar { display: none; }
+    .tab {
+      flex: 1 0 auto; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+      padding: 9px 14px; border-radius: 12px; font-size: .84rem; font-weight: 600; color: var(--muted);
+      transition: background .2s ease, color .2s ease;
+    }
+    .tab:hover { color: var(--text); }
+    .tab[aria-selected="true"] { background: var(--bg-2); color: var(--text); box-shadow: 0 4px 14px -6px rgba(0, 0, 0, .35); border: 1px solid var(--border); }
+    .app-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+    .app-logo {
+      width: 52px; height: 52px; border-radius: 15px; display: grid; place-items: center; flex-shrink: 0;
+      background: linear-gradient(145deg, #1b1f3a, #0e1022); border: 1px solid rgba(255, 255, 255, .08);
+      color: #fff; font-weight: 800; font-size: 1.3rem; font-family: system-ui, sans-serif;
+    }
+    .app-logo b { background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .app-name { font-weight: 800; font-size: 1.05rem; }
+    .steps { list-style: none; position: relative; }
+    .step { position: relative; display: flex; gap: 14px; padding-bottom: 20px; }
+    .step:last-child { padding-bottom: 0; }
+    .step::before {
+      content: ""; position: absolute; top: 34px; bottom: 2px; right: 15px; width: 2px;
+      background: linear-gradient(var(--border-strong), transparent);
+    }
+    .step:last-child::before { display: none; }
+    .step-num {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; display: grid; place-items: center;
+      font-weight: 700; font-size: .85rem; color: #fff; background: var(--brand-grad);
+      box-shadow: 0 6px 16px -6px var(--brand-1);
+    }
+    .step-body { flex: 1; min-width: 0; padding-top: 3px; }
+    .step-title { font-weight: 700; font-size: .95rem; }
+    .step-text { font-size: .84rem; color: var(--muted); margin-top: 2px; }
+    .step-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+
+    /* کانفیگ‌ها */
+    .collapse-btn { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; text-align: right; }
+    .collapse-btn .chev { transition: transform .25s ease; color: var(--muted); }
+    .collapse-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+    .count { font-size: .74rem; font-weight: 700; padding: 1px 9px; border-radius: 999px; background: var(--surface-3); color: var(--muted); }
+    .collapse { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; }
+    .collapse.open { grid-template-rows: 1fr; }
+    .collapse > div { overflow: hidden; }
+    .cfg-toolbar { display: flex; justify-content: flex-end; padding-top: 16px; margin-bottom: 10px; }
+    .cfg-list { display: flex; flex-direction: column; gap: 8px; }
+    .cfg {
+      display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 12px;
+      background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm);
+      transition: border-color .2s ease, background .2s ease;
+    }
+    .cfg:hover { border-color: var(--border-strong); }
+    .proto {
+      font-size: .66rem; font-weight: 800; letter-spacing: .5px; padding: 4px 8px; border-radius: 8px; flex-shrink: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--c); background: color-mix(in srgb, var(--c) 14%, transparent);
+    }
+    .cfg-name { flex: 1; min-width: 0; font-size: .86rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .cfg-btns { display: flex; gap: 6px; }
+    .empty { text-align: center; color: var(--muted); font-size: .86rem; padding: 18px 0 4px; }
+
+    /* مودال QR */
+    .modal {
+      position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px;
+      background: rgba(4, 5, 12, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease;
+    }
+    .modal.open { opacity: 1; visibility: visible; }
+    .modal-card {
+      width: 100%; max-width: 340px; background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 24px; padding: 20px; text-align: center; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .6);
+      transform: translateY(12px) scale(.97); transition: transform .25s cubic-bezier(.2, .8, .2, 1);
+    }
+    .modal.open .modal-card { transform: none; }
+    .modal-title { font-weight: 700; font-size: .95rem; margin-bottom: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .qr-frame { background: #fff; border-radius: 18px; padding: 14px; display: inline-block; margin-bottom: 16px; position: relative; }
+    .qr-frame canvas, .qr-frame img { display: block; width: 240px; height: 240px; max-width: 100%; image-rendering: pixelated; }
+    .modal-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    /* اعلان */
+    .toast {
+      position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom)); z-index: 60;
+      transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+      display: flex; align-items: center; gap: 8px;
+      padding: 11px 18px; border-radius: 14px; font-size: .86rem; font-weight: 600;
+      background: var(--bg-2); color: var(--text); border: 1px solid var(--border-strong);
+      box-shadow: 0 16px 40px -12px rgba(0, 0, 0, .5);
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .toast svg { color: var(--success); }
+
+    footer { text-align: center; color: var(--faint); font-size: .8rem; padding-top: 14px; }
+    footer b { color: var(--muted); font-weight: 700; }
+
+    @media (max-width: 720px) {
+      .hero { grid-template-columns: 1fr; }
+      .ring-wrap { order: -1; display: flex; justify-content: center; }
+      .ring-box { width: 170px; height: 170px; }
+      .user-row { justify-content: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .card { padding: 18px 16px; border-radius: 18px; }
+      .actions { grid-template-columns: 1fr 1fr; }
+      .actions .btn-primary { grid-column: 1 / -1; }
+      .stat-value { font-size: .95rem; }
+      .tabs { gap: 4px; }
+      .tab { flex: 1 1 auto; padding: 9px 10px; }
+      .tab span { display: none; }
+      .tab[aria-selected="true"] span { display: inline; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-fx" aria-hidden="true"><div class="bg-grid"></div></div>
+
+  <!-- آیکون‌ها -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="nx-grad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/>
+      </linearGradient>
+      <symbol id="i-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="3"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+      <symbol id="i-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><path d="M14 14h3v3h-3zM20 14v.01M14 20h.01M17 20h4v-3"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+      <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></symbol>
+      <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></symbol>
+      <symbol id="i-rocket" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+      <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5m-6 6 6-6 6 6"/></symbol>
+      <symbol id="i-pie" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 15.9A10 10 0 1 1 8 2.8"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+      <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16M3 12a9 9 0 0 1 15.5-6.2L21 8"/><path d="M21 3v5h-5M3 21v-5h5"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+      <symbol id="p-android" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48 19.44 6.3a.38.38 0 0 0-.66-.38l-1.86 3.22a11.5 11.5 0 0 0-9.84 0L5.22 5.92a.38.38 0 0 0-.66.38L6.4 9.48A10.8 10.8 0 0 0 1 18h22a10.8 10.8 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></symbol>
+      <symbol id="p-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M16.37 12.6c-.02-2.2 1.8-3.26 1.88-3.31a4.05 4.05 0 0 0-3.18-1.72c-1.35-.14-2.64.8-3.33.8-.69 0-1.75-.78-2.88-.76a4.26 4.26 0 0 0-3.6 2.18c-1.54 2.66-.39 6.6 1.1 8.76.73 1.06 1.6 2.24 2.74 2.2 1.1-.04 1.51-.71 2.84-.71 1.33 0 1.7.71 2.86.69 1.18-.02 1.93-1.08 2.65-2.14a9.4 9.4 0 0 0 1.2-2.47 3.83 3.83 0 0 1-2.28-3.52zM14.2 6.13a3.82 3.82 0 0 0 .88-2.76 3.9 3.9 0 0 0-2.53 1.3 3.64 3.64 0 0 0-.9 2.67 3.22 3.22 0 0 0 2.55-1.2z"/></symbol>
+      <symbol id="p-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.4 4.5v7.1H3zM11.3 4.4 21 3v8.6h-9.7zM3 12.4h7.4v7.1L3 18.5zM11.3 12.4H21V21l-9.7-1.4z"/></symbol>
+      <symbol id="p-mac" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+      <symbol id="p-linux" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 17 6-5-6-5M12 19h8"/></symbol>
+      <symbol id="p-tv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="m17 2-5 5-5-5"/></symbol>
+    </defs>
+  </svg>
+
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20V4h3.2l7.6 10.2V4H19v16h-3.2L8.2 9.8V20z"/></svg>
+        </div>
+        <div>
+          <div class="brand-name"><span>{{ brand_name }}</span></div>
+          <div class="brand-sub">{{ brand_tagline }}</div>
+        </div>
+      </div>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="تغییر تم">
+        <svg class="theme-moon" width="19" height="19"><use href="#i-moon"/></svg>
+        <svg class="theme-sun" width="19" height="19"><use href="#i-sun"/></svg>
+      </button>
+    </header>
+
+    <main>
+      <!-- وضعیت اشتراک -->
+      <section class="card hero">
+        <div>
+          <div class="user-row">
+            <div class="avatar" id="avatar">N</div>
+            <div style="min-width:0">
+              <div class="user-name ltr" id="username" style="text-align:right">{{ user.username }}</div>
+              <span class="status" id="status" data-s="active" style="--c: var(--success)"><span class="dot"></span><span id="statusText">فعال</span></span>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <div class="stat-label"><svg width="14" height="14"><use href="#i-pie"/></svg>مصرف شده</div>
+              <div class="stat-value" id="usedVal">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label"><svg width="14" height="14"><use href="#i-layers"/></svg>حجم کل</div>
+              <div class="stat-value" id="totalVal">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label"><svg width="14" height="14"><use href="#i-clock"/></svg>زمان باقی‌مانده</div>
+              <div class="stat-value" id="daysVal">—</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label"><svg width="14" height="14"><use href="#i-cal"/></svg>تاریخ انقضا</div>
+              <div class="stat-value" id="expireVal">—</div>
+            </div>
+          </div>
+          <div class="chips" id="chips"></div>
+        </div>
+        <div class="ring-wrap">
+          <div class="ring-box">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="52" fill="none" stroke-width="10"/>
+              <circle class="ring-bar" id="ringBar" cx="60" cy="60" r="52" fill="none" stroke="url(#nx-grad)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.73" stroke-dashoffset="326.73"/>
+            </svg>
+            <div class="ring-center">
+              <div class="ring-pct" id="ringPct">—</div>
+              <div class="ring-cap" id="ringCap">باقی‌مانده</div>
+              <div class="ring-sub" id="ringSub">—</div>
+            </div>
+          </div>
+        </div>
+        <div class="alert" id="alert"><svg width="18" height="18"><use href="#i-alert"/></svg><span id="alertText"></span></div>
+      </section>
+
+      <!-- لینک اشتراک -->
+      <section class="card">
+        <div class="card-head">
+          <div class="card-title"><span class="ico"><svg width="17" height="17"><use href="#i-link"/></svg></span>لینک اشتراک</div>
+        </div>
+        <div class="sub-box">
+          <div class="sub-url ltr" id="subUrl">—</div>
+          <button class="btn btn-icon" type="button" data-copy="sub" aria-label="کپی لینک اشتراک"><svg width="16" height="16"><use href="#i-copy"/></svg></button>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" id="happAddBtn" href="#"><svg width="18" height="18"><use href="#i-plus"/></svg>افزودن به Happ</a>
+          <button class="btn" type="button" data-copy="sub"><svg width="17" height="17"><use href="#i-copy"/></svg>کپی</button>
+          <button class="btn" type="button" data-qr="sub"><svg width="17" height="17"><use href="#i-qr"/></svg>QR کد</button>
+        </div>
+      </section>
+
+      <!-- راهنمای اتصال -->
+      <section class="card">
+        <div class="card-head">
+          <div>
+            <div class="card-title"><span class="ico"><svg width="17" height="17"><use href="#i-rocket"/></svg></span>راهنمای اتصال</div>
+          </div>
+        </div>
+        <div class="tabs" role="tablist" id="tabs"></div>
+        <div class="app-head">
+          <div class="app-logo" aria-hidden="true"><b>H</b></div>
+          <div>
+            <div class="app-name">Happ</div>
+            <div class="card-desc" id="appDesc">برنامه پیشنهادی برای همه دستگاه‌ها</div>
+          </div>
+        </div>
+        <ol class="steps">
+          <li class="step">
+            <div class="step-num">۱</div>
+            <div class="step-body">
+              <div class="step-title">نصب برنامه</div>
+              <div class="step-text" id="step1Text">برنامه Happ را از لینک زیر دانلود و نصب کنید.</div>
+              <div class="step-actions" id="downloads"></div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num">۲</div>
+            <div class="step-body">
+              <div class="step-title">افزودن اشتراک</div>
+              <div class="step-text" id="step2Text">روی دکمه زیر بزنید تا اشتراک به‌صورت خودکار به Happ اضافه شود.</div>
+              <div class="step-actions" id="step2Actions"></div>
+            </div>
+          </li>
+          <li class="step">
+            <div class="step-num">۳</div>
+            <div class="step-body">
+              <div class="step-title">اتصال</div>
+              <div class="step-text">در Happ یکی از سرورها را انتخاب کنید و دکمه اتصال را بزنید. برای دریافت سرورهای جدید، اشتراک را در برنامه به‌روزرسانی کنید.</div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- کانفیگ‌ها -->
+      <section class="card">
+        <button class="collapse-btn" type="button" id="cfgToggle" aria-expanded="false" aria-controls="cfgPanel">
+          <span class="card-title"><span class="ico"><svg width="17" height="17"><use href="#i-layers"/></svg></span>کانفیگ‌ها <span class="count" id="cfgCount">۰</span></span>
+          <svg class="chev" width="20" height="20"><use href="#i-chev"/></svg>
+        </button>
+        <div class="collapse" id="cfgPanel">
+          <div>
+            <div class="cfg-toolbar"><button class="btn btn-sm" type="button" id="copyAll"><svg width="15" height="15"><use href="#i-copy"/></svg>کپی همه</button></div>
+            <div class="cfg-list" id="cfgList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>{{ footer_text }} · <b>{{ brand_name }}</b></footer>
+  </div>
+
+  <!-- QR -->
+  <div class="modal" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+    <div class="modal-card">
+      <div class="modal-title ltr" id="qrTitle"></div>
+      <div class="qr-frame" id="qrFrame"></div>
+      <div class="modal-actions">
+        <button class="btn btn-primary" type="button" id="qrCopy"><svg width="16" height="16"><use href="#i-copy"/></svg>کپی</button>
+        <button class="btn" type="button" id="qrClose">بستن</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"><svg width="16" height="16"><use href="#i-check"/></svg><span id="toastText"></span></div>
+
+  <script>
+    window.NEXRA_SUB = {
+      username: {{ user.username | tojson }},
+      status: {{ user.status | default("active") | tojson }},
+      expire: {{ user.expire | default(none) | tojson }},
+      dataLimit: {{ user.data_limit | default(none) | tojson }},
+      used: {{ user.used_traffic | default(0) | tojson }},
+      resetStrategy: {{ user.data_limit_reset_strategy | default(none) | tojson }},
+      onHoldDuration: {{ user.on_hold_expire_duration | default(none) | tojson }},
+      subUrl: {{ user.subscription_url | default("") | tojson }},
+      links: {{ user.links | default([]) | list | tojson }}
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/qrious@4.0.2/dist/qrious.min.js" defer></script>
+  <script>
+  (function () {
+    'use strict';
+
+    /* لینک‌های دانلود Happ */
+    var HAPP = {
+      playStore: 'https://play.google.com/store/apps/details?id=com.happproxy',
+      appStore: 'https://apps.apple.com/app/happ-proxy-utility/id6504287215',
+      androidApk: 'https://github.com/Happ-proxy/happ-android/releases/latest',
+      desktop: 'https://github.com/Happ-proxy/happ-desktop/releases/latest'
+    };
+
+    var PLATFORMS = [
+      { id: 'android', label: 'اندروید', icon: 'p-android',
+        downloads: [{ label: 'Google Play', url: HAPP.playStore, primary: true }, { label: 'دانلود APK', url: HAPP.androidApk }] },
+      { id: 'ios', label: 'آیفون', icon: 'p-apple',
+        downloads: [{ label: 'App Store', url: HAPP.appStore, primary: true }] },
+      { id: 'windows', label: 'ویندوز', icon: 'p-windows',
+        downloads: [{ label: 'دانلود برای ویندوز', url: HAPP.desktop, primary: true }],
+        note: 'از صفحه باز شده، فایل نصبی ویندوز با پسوند exe را دانلود و نصب کنید.' },
+      { id: 'macos', label: 'مک', icon: 'p-mac',
+        downloads: [{ label: 'App Store', url: HAPP.appStore, primary: true }, { label: 'نسخه دسکتاپ', url: HAPP.desktop }] },
+      { id: 'linux', label: 'لینوکس', icon: 'p-linux',
+        downloads: [{ label: 'دانلود برای لینوکس', url: HAPP.desktop, primary: true }],
+        note: 'از صفحه باز شده، بسته مناسب توزیع خود مثل deb یا AppImage را دانلود کنید.' },
+      { id: 'tv', label: 'تلویزیون', icon: 'p-tv', tv: true,
+        downloads: [{ label: 'Google Play', url: HAPP.playStore, primary: true }],
+        note: 'Happ را از Google Play تلویزیون نصب کنید.' }
+    ];
+
+    var STATUS = {
+      active:   { text: 'فعال',              color: 'var(--success)' },
+      on_hold:  { text: 'در انتظار اتصال',   color: 'var(--info)' },
+      limited:  { text: 'اتمام حجم',         color: 'var(--warn)' },
+      expired:  { text: 'منقضی شده',         color: 'var(--danger)' },
+      disabled: { text: 'غیرفعال',           color: 'var(--faint)' }
+    };
+    var ALERTS = {
+      limited: 'حجم اشتراک شما به پایان رسیده است. برای ادامه، اشتراک خود را تمدید کنید.',
+      expired: 'زمان اشتراک شما به پایان رسیده است. برای ادامه، اشتراک خود را تمدید کنید.',
+      disabled: 'این اشتراک غیرفعال شده است.',
+      on_hold: 'زمان اشتراک از اولین اتصال شما شروع می‌شود.'
+    };
+    var RESET = { day: 'روزانه', week: 'هفتگی', month: 'ماهانه', year: 'سالانه' };
+    var PROTO = {
+      vless: '#7c5cff', vmess: '#38bdf8', trojan: '#f43f5e', ss: '#22c55e',
+      hysteria2: '#f59e0b', hy2: '#f59e0b', tuic: '#14b8a6', wireguard: '#a855f7'
+    };
+
+    var D = window.NEXRA_SUB || {};
+    var $ = function (id) { return document.getElementById(id); };
+
+    function enumVal(v) {
+      if (v == null) return '';
+      v = String(v);
+      return v.indexOf('.') > -1 ? v.split('.').pop() : v;
+    }
+    function fa(n, digits) {
+      return Number(n).toLocaleString('fa-IR', { maximumFractionDigits: digits == null ? 0 : digits });
+    }
+    function fmtBytes(b) {
+      b = Number(b) || 0;
+      var u = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'], i = 0;
+      while (b >= 1024 && i < u.length - 1) { b /= 1024; i++; }
+      return { n: fa(b, b >= 100 || i === 0 ? 0 : b >= 10 ? 1 : 2), u: u[i] };
+    }
+    function bytesHTML(b) { var f = fmtBytes(b); return f.n + '<small>' + f.u + '</small>'; }
+    function esc(s) {
+      return String(s).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    var subUrl = '';
+    try { subUrl = D.subUrl ? new URL(D.subUrl, location.href).href : location.href.split('#')[0]; }
+    catch (e) { subUrl = D.subUrl || location.href; }
+    var links = Array.isArray(D.links) ? D.links.filter(Boolean) : [];
+    var happLink = 'happ://add/' + subUrl;
+
+    /* ---------- وضعیت ---------- */
+    var status = enumVal(D.status) || 'active';
+    var st = STATUS[status] || { text: status, color: 'var(--faint)' };
+    var stEl = $('status');
+    stEl.dataset.s = status;
+    stEl.style.setProperty('--c', st.color);
+    $('statusText').textContent = st.text;
+    $('avatar').textContent = (D.username || 'N').trim().charAt(0) || 'N';
+    if (ALERTS[status]) {
+      var al = $('alert');
+      al.style.setProperty('--c', st.color);
+      $('alertText').textContent = ALERTS[status];
+      al.classList.add('show');
+    }
+
+    /* ---------- ترافیک ---------- */
+    var used = Number(D.used) || 0;
+    var limit = Number(D.dataLimit) || 0;
+    $('usedVal').innerHTML = bytesHTML(used);
+    var C = 2 * Math.PI * 52, ring = $('ringBar');
+    if (limit > 0) {
+      var remain = Math.max(limit - used, 0);
+      var pct = Math.min(remain / limit * 100, 100);
+      $('totalVal').innerHTML = bytesHTML(limit);
+      $('ringPct').textContent = fa(pct, pct < 10 && pct > 0 ? 1 : 0) + '٪';
+      $('ringCap').textContent = 'حجم باقی‌مانده';
+      var rf = fmtBytes(remain);
+      $('ringSub').innerHTML = '<bdi dir="ltr">' + rf.n + ' ' + rf.u + '</bdi>';
+      if (pct <= 0) ring.style.opacity = '0';
+      if (pct <= 10) ring.setAttribute('stroke', 'var(--danger)');
+      else if (pct <= 25) ring.setAttribute('stroke', 'var(--warn)');
+      requestAnimationFrame(function () { requestAnimationFrame(function () {
+        ring.style.strokeDashoffset = String(C * (1 - pct / 100));
+      }); });
+    } else {
+      $('totalVal').textContent = 'نامحدود';
+      $('ringPct').textContent = '∞';
+      $('ringCap').textContent = 'حجم نامحدود';
+      var uf = fmtBytes(used);
+      $('ringSub').innerHTML = 'مصرف: <bdi dir="ltr">' + uf.n + ' ' + uf.u + '</bdi>';
+      requestAnimationFrame(function () { requestAnimationFrame(function () { ring.style.strokeDashoffset = '0'; }); });
+    }
+
+    /* ---------- زمان ---------- */
+    var expire = Number(D.expire) || 0;
+    if (status === 'on_hold' && D.onHoldDuration) {
+      $('daysVal').innerHTML = fa(Math.ceil(D.onHoldDuration / 86400)) + '<small>روز</small>';
+      $('expireVal').textContent = 'پس از اولین اتصال';
+    } else if (expire > 0) {
+      var ms = expire * 1000 - Date.now();
+      var days = Math.floor(ms / 86400000);
+      var hours = Math.floor(ms / 3600000);
+      if (ms <= 0) $('daysVal').textContent = 'تمام شده';
+      else if (days >= 1) $('daysVal').innerHTML = fa(days) + '<small>روز</small>';
+      else $('daysVal').innerHTML = fa(Math.max(hours, 1)) + '<small>ساعت</small>';
+      try {
+        $('expireVal').textContent = new Intl.DateTimeFormat('fa-IR-u-ca-persian', { year: 'numeric', month: 'long', day: 'numeric' }).format(new Date(expire * 1000));
+      } catch (e) { $('expireVal').textContent = new Date(expire * 1000).toLocaleDateString(); }
+    } else {
+      $('daysVal').textContent = 'نامحدود';
+      $('expireVal').textContent = 'ندارد';
+    }
+
+    var reset = enumVal(D.resetStrategy);
+    if (RESET[reset] && limit > 0) {
+      $('chips').innerHTML = '<span class="chip"><svg width="13" height="13"><use href="#i-refresh"/></svg>ریست حجم: ' + RESET[reset] + '</span>';
+    }
+
+    /* ---------- لینک اشتراک ---------- */
+    $('subUrl').textContent = subUrl;
+    $('happAddBtn').setAttribute('href', happLink);
+
+    /* ---------- کپی و اعلان ---------- */
+    var toastTimer;
+    function toast(msg) {
+      $('toastText').textContent = msg;
+      var t = $('toast');
+      t.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2000);
+    }
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      return ok;
+    }
+    function copy(text, msg) {
+      var done = function () { toast(msg || 'کپی شد'); };
+      var fail = function () { if (fallbackCopy(text)) done(); else toast('کپی انجام نشد'); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fail);
+      else fail();
+    }
+
+    /* ---------- QR ---------- */
+    var qrText = '';
+    function openQr(text, title) {
+      qrText = text;
+      $('qrTitle').textContent = title || '';
+      var frame = $('qrFrame');
+      frame.innerHTML = '';
+      if (window.QRious) {
+        var canvas = document.createElement('canvas');
+        new window.QRious({ element: canvas, value: text, size: 480, level: text.length > 600 ? 'L' : 'M', background: '#ffffff', foreground: '#0b0d1a' });
+        frame.appendChild(canvas);
+      } else {
+        frame.innerHTML = '<div style="width:240px;height:240px;display:grid;place-items:center;color:#5d6385;font-size:.85rem">بارگذاری QR ممکن نشد</div>';
+      }
+      $('qrModal').classList.add('open');
+    }
+    function closeQr() { $('qrModal').classList.remove('open'); }
+    $('qrClose').addEventListener('click', closeQr);
+    $('qrCopy').addEventListener('click', function () { copy(qrText); });
+    $('qrModal').addEventListener('click', function (e) { if (e.target === this) closeQr(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeQr(); });
+
+    /* ---------- کانفیگ‌ها ---------- */
+    function b64decode(s) {
+      s = s.replace(/-/g, '+').replace(/_/g, '/');
+      while (s.length % 4) s += '=';
+      var bin = atob(s), bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    }
+    function parseLink(link) {
+      var m = /^([a-z0-9]+):\/\//i.exec(link);
+      var proto = m ? m[1].toLowerCase() : 'link';
+      var name = '';
+      try {
+        if (proto === 'vmess') name = JSON.parse(b64decode(link.slice(8))).ps || '';
+        else if (link.indexOf('#') > -1) name = decodeURIComponent(link.slice(link.lastIndexOf('#') + 1));
+      } catch (e) {}
+      return { proto: proto, name: name || proto.toUpperCase() };
+    }
+    $('cfgCount').textContent = fa(links.length);
+    var list = $('cfgList');
+    if (!links.length) {
+      list.innerHTML = '<div class="empty">کانفیگی برای نمایش وجود ندارد.</div>';
+      $('copyAll').style.display = 'none';
+    } else {
+      list.innerHTML = links.map(function (l, i) {
+        var p = parseLink(l);
+        var c = PROTO[p.proto] || 'var(--muted)';
+        var label = p.proto === 'ss' ? 'SS' : p.proto.toUpperCase();
+        return '<div class="cfg">' +
+          '<span class="proto" style="--c:' + c + '">' + esc(label) + '</span>' +
+          '<span class="cfg-name" dir="auto">' + esc(p.name) + '</span>' +
+          '<span class="cfg-btns">' +
+            '<button class="btn btn-icon" type="button" data-copy-i="' + i + '" aria-label="کپی"><svg width="15" height="15"><use href="#i-copy"/></svg></button>' +
+            '<button class="btn btn-icon" type="button" data-qr-i="' + i + '" aria-label="QR"><svg width="15" height="15"><use href="#i-qr"/></svg></button>' +
+          '</span></div>';
+      }).join('');
+    }
+    $('copyAll').addEventListener('click', function () { copy(links.join('\n'), 'همه کانفیگ‌ها کپی شد'); });
+    $('cfgToggle').addEventListener('click', function () {
+      var open = this.getAttribute('aria-expanded') !== 'true';
+      this.setAttribute('aria-expanded', String(open));
+      $('cfgPanel').classList.toggle('open', open);
+    });
+
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest('button, a');
+      if (!b) return;
+      if (b.dataset.copy === 'sub') copy(subUrl, 'لینک اشتراک کپی شد');
+      else if (b.dataset.qr === 'sub') openQr(subUrl, 'لینک اشتراک');
+      else if (b.dataset.copyI != null) copy(links[+b.dataset.copyI]);
+      else if (b.dataset.qrI != null) openQr(links[+b.dataset.qrI], parseLink(links[+b.dataset.qrI]).name);
+    });
+
+    /* ---------- راهنمای Happ ---------- */
+    function detect() {
+      var ua = navigator.userAgent || '';
+      if (/Android/i.test(ua) && /TV|AFT|BRAVIA|SmartTV|GoogleTV/i.test(ua)) return 'tv';
+      if (/Android/i.test(ua)) return 'android';
+      if (/iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) return 'ios';
+      if (/Macintosh|Mac OS X/i.test(ua)) return 'macos';
+      if (/Windows/i.test(ua)) return 'windows';
+      if (/Linux|X11/i.test(ua)) return 'linux';
+      return 'android';
+    }
+    var tabs = $('tabs');
+    tabs.innerHTML = PLATFORMS.map(function (p) {
+      return '<button class="tab" type="button" role="tab" aria-selected="false" data-p="' + p.id + '">' +
+        '<svg width="16" height="16"><use href="#' + p.icon + '"/></svg><span>' + p.label + '</span></button>';
+    }).join('');
+    function selectPlatform(id) {
+      var p = PLATFORMS.filter(function (x) { return x.id === id; })[0] || PLATFORMS[0];
+      Array.prototype.forEach.call(tabs.children, function (t) { t.setAttribute('aria-selected', String(t.dataset.p === p.id)); });
+      $('appDesc').textContent = 'برنامه پیشنهادی برای ' + p.label;
+      $('step1Text').textContent = p.note || 'برنامه Happ را از لینک زیر دانلود و نصب کنید.';
+      $('downloads').innerHTML = p.downloads.map(function (d) {
+        return '<a class="btn btn-sm' + (d.primary ? ' btn-primary' : '') + '" href="' + esc(d.url) + '" target="_blank" rel="noopener noreferrer">' +
+          '<svg width="15" height="15"><use href="#i-down"/></svg>' + esc(d.label) + '</a>';
+      }).join('');
+      if (p.tv) {
+        $('step2Text').textContent = 'در Happ تلویزیون گزینه افزودن (+) را بزنید و QR کد زیر را با گوشی اسکن کنید یا لینک اشتراک را وارد کنید.';
+        $('step2Actions').innerHTML =
+          '<button class="btn btn-sm btn-primary" type="button" data-qr="sub"><svg width="15" height="15"><use href="#i-qr"/></svg>نمایش QR کد</button>' +
+          '<button class="btn btn-sm" type="button" data-copy="sub"><svg width="15" height="15"><use href="#i-copy"/></svg>کپی لینک</button>';
+      } else {
+        $('step2Text').textContent = 'روی «افزودن به Happ» بزنید تا اشتراک خودکار اضافه شود. اگر برنامه باز نشد، لینک را کپی کنید و در Happ با دکمه (+) گزینه «از کلیپ‌بورد» را انتخاب کنید.';
+        $('step2Actions').innerHTML =
+          '<a class="btn btn-sm btn-primary" href="' + esc(happLink) + '"><svg width="15" height="15"><use href="#i-plus"/></svg>افزودن به Happ</a>' +
+          '<button class="btn btn-sm" type="button" data-copy="sub"><svg width="15" height="15"><use href="#i-copy"/></svg>کپی لینک</button>';
+      }
+    }
+    tabs.addEventListener('click', function (e) {
+      var t = e.target.closest('.tab');
+      if (t) selectPlatform(t.dataset.p);
+    });
+    selectPlatform(detect());
+
+    /* ---------- تم ---------- */
+    $('themeBtn').addEventListener('click', function () {
+      var root = document.documentElement;
+      var cur = root.getAttribute('data-theme') ||
+        (window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      var next = cur === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('nexra-theme', next); } catch (e) {}
+    });
+  })();
+  </script>
+</body>
+</html>
